@@ -18,8 +18,11 @@ struct ContentView: View {
                 VStack(alignment: .leading) {
                     Text(item.type)
                     Text(item.venue.name)
-//                    Text(item.venue.state)
-                }
+                    Text(item.venue.display_location)
+                    Text(item.venue.address)
+                    Text(item.venue.country)
+
+               }
             }
             .task {
                 await self.loadData()
@@ -31,7 +34,7 @@ struct ContentView: View {
     }
     
     func loadData() async {
-        guard let url = URL(string: "https://api.seatgeek.com/2/events?per_page=25&client_id=MzI2NzE2NjN8MTY3OTk0MTExOS44NDExODIy") else {
+        guard let url = URL(string: "https://api.seatgeek.com/2/events?per_page=100&client_id=MzI2NzE2NjN8MTY3OTk0MTExOS44NDExODIy") else {
             print("Invalid URL")
             return
         }

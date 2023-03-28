@@ -18,8 +18,8 @@ struct ContentView: View {
                 VStack(alignment: .leading) {
                     Text(item.type)
                     Text(item.venue.name)
-                    Text(item.venue.display_location)
                     Text(item.venue.address)
+                    Text(item.venue.display_location)
                     Text(item.venue.country)
 
                }

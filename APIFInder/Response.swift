@@ -13,8 +13,8 @@ struct Response: Codable{
 }
 
 struct Venue: Codable {
-    var state: String
     var name: String
+//    var state: String
 }
 
 struct Event: Codable {
@@ -22,3 +22,7 @@ struct Event: Codable {
     var id: Int
     var venue : Venue
 }
+
+
+
+

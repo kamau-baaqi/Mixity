@@ -15,9 +15,9 @@ struct Response: Codable{
 struct Venue: Codable {
     var name: String
     var address: String
+    var city: String
     var country: String
     var display_location: String
-//    var state: String
 }
 
 struct Event: Codable {

@@ -6,35 +6,104 @@
 //
 
 import SwiftUI
+import MusicKit
+
+struct Item: Identifiable, Hashable {
+    var id = UUID()
+    let name: String
+    let artist: String
+    let imageURL: URL?
+}
 
 struct ContentView: View {
     @State private var events = [Event]()
+    @State private var searchText = ""
     var concerts: [Event]{
-        events.filter({$0.type == "concert"})
+        events.filter({$0.type == "concert" && $0.venue.city.lowercased().contains(searchText.lowercased())})
     }
+//    if searchText.isEmpty {
+//        return concerts
+//    }
+    @State var songs = [Item]()
     var body: some View {
         VStack{
-            List(concerts, id: \.id) { item in
-                VStack(alignment: .leading) {
-                    Text(item.type)
-                    Text(item.venue.name)
-                    Text(item.venue.address)
-                    Text(item.venue.display_location)
-                    Text(item.venue.country)
-
-               }
+            NavigationStack {
+                List(concerts, id: \.id) { item in
+                    VStack(alignment: .leading) {
+                        //                    Text(item.type)
+                        Text(item.venue.name)
+                        Text(item.venue.address)
+                        Text(item.venue.city)
+                        Text(item.venue.display_location)
+                        Text(item.venue.country)
+                        
+                    }
+                    
+                    .onAppear {
+                        fetchMusic()
+                    }
+                }
+                .task {
+                    await self.loadData()
+                }
+                .refreshable {
+                    await self.loadData()
+                }
+                List(songs) { song in
+                    HStack {
+                        AsyncImage(url: song.imageURL)
+                            .frame(width: 75, height: 75, alignment: .center)
+                        VStack(alignment: .leading) {
+                            Text(song.name)
+                                .font(.title3)
+                            Text(song.artist)
+                                .font(.footnote)
+                        }
+                    }
+                }
             }
-            .task {
-                await self.loadData()
+            .searchable(text: $searchText)
+        }
+        
+        
+    }
+    private let request: MusicCatalogSearchRequest = {
+        var request = MusicCatalogSearchRequest(term: "Dynamite", types: [Song.self])
+        
+        request.limit = 25
+        return request
+        
+    }()
+    
+    private func fetchMusic() {
+        Task {
+            // Request permission
+            let status = await MusicAuthorization.request()
+            switch status {
+            case .authorized:
+                // Request -> Response
+                
+                do {
+                    let result = try await request.response()
+                    // Assigns songs
+                    self.songs = result.songs.compactMap({
+                        return .init(name: $0.title, artist: $0.artistName, imageURL: $0.artwork?.url(width: 75, height: 75))
+                    })
+                     
+                } catch {
+                    print(String(describing: error))
+                }
+                
+            default:
+                break
             }
-            .refreshable {
-                await self.loadData()
-            }
+           
         }
     }
     
+    
     func loadData() async {
-        guard let url = URL(string: "https://api.seatgeek.com/2/events?per_page=100&client_id=MzI2NzE2NjN8MTY3OTk0MTExOS44NDExODIy") else {
+        guard let url = URL(string: "https://api.seatgeek.com/2/events?per_page=300&client_id=MzI2NzE2NjN8MTY3OTk0MTExOS44NDExODIy") else {
             print("Invalid URL")
             return
         }

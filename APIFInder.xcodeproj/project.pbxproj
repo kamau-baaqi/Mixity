@@ -15,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1768B9A729D389B800581768 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		17EAE40C29CB8CCA0024FED5 /* APIFInder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APIFInder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17EAE40F29CB8CCA0024FED5 /* APIFInderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFInderApp.swift; sourceTree = "<group>"; };
 		17EAE41129CB8CCA0024FED5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +54,7 @@
 		17EAE40E29CB8CCA0024FED5 /* APIFInder */ = {
 			isa = PBXGroup;
 			children = (
+				1768B9A729D389B800581768 /* Info.plist */,
 				17EAE40F29CB8CCA0024FED5 /* APIFInderApp.swift */,
 				17EAE41129CB8CCA0024FED5 /* ContentView.swift */,
 				17EAE41D29CB8EF30024FED5 /* Response.swift */,
@@ -274,6 +276,8 @@
 				DEVELOPMENT_TEAM = NHF9L237JV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = APIFInder/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "This uses data from Apple Music to load music.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -303,6 +307,8 @@
 				DEVELOPMENT_TEAM = NHF9L237JV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = APIFInder/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "This uses data from Apple Music to load music.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

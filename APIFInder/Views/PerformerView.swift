@@ -9,10 +9,14 @@
 import SwiftUI
 
 struct PerformerView: View {
+    @State private var events = [Event]()
+    var concerts: [Event]{
+        events.filter({$0.type == "concert"})}
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                Image("myImage")
+                Image("MixBackground")
                     .renderingMode(.original)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -31,7 +35,7 @@ struct PerformerView: View {
                         .multilineTextAlignment(.leading)
                         .frame(maxWidth: .infinity)
                         .clipped()
-                    Text("Phoebe Bridgers")
+                    Text("Jill Scott")
                         .font(.headline.weight(.regular))
                         .foregroundColor(.pink)
                         .padding(.top, 2)
@@ -73,9 +77,9 @@ struct PerformerView: View {
                 }
                 .padding()
                 VStack(spacing: 7) {
-                    ForEach(0..<5) { _ // Replace with your data model here
+                    ForEach(concerts, id: \.id ) { item in  // Replace with your data model here
                         HStack(spacing: 10) {
-                            Image("myImage")
+                            Image("ThatWasThen")
                                 .renderingMode(.original)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
@@ -83,9 +87,9 @@ struct PerformerView: View {
                                 .clipped()
                                 .mask { RoundedRectangle(cornerRadius: 8, style: .continuous) }
                             VStack(alignment: .leading) {
-                                Text("New York City")
+                                Text(item.type)
                                     .font(.system(size: 16, weight: .medium, design: .default))
-                                Text("March 9th")
+                                Text(item.venue.city)
                                     .font(.footnote)
                                     .foregroundColor(.secondary)
                             }

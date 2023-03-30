@@ -28,12 +28,12 @@ struct MixView: View {
                             .padding(.top, 59)
                     }
                     Text("Detroit, the Motor city, birthplace of techno and house music. The hometown of music legends such as Stevie Wonder and Aretha Franklin")
-                        .frame()
+                        .frame(width: 50)
                         .clipped()
                         .padding(.horizontal)
                         .font(.system(size: 15, weight: .medium, design: .default))
                     VStack(spacing: 7) {
-                        ForEach(0..<5) { _ // Replace with your data model here
+                        ForEach(0..<5) { Event in // Replace with your data model here
                             HStack(spacing: 10) {
                                 Image("myImage")
                                     .renderingMode(.original)
@@ -64,7 +64,7 @@ struct MixView: View {
                         }
                     }
                     .padding()
-                    .frame()
+                    .frame(width: 50)
                     .clipped()
                     VStack(alignment: .leading) {
                         Text("Trending Local Artists")
@@ -72,7 +72,7 @@ struct MixView: View {
                             .font(.title.weight(.bold))
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
-                                ForEach(0..<5) { _ // Replace with your data model here
+                                ForEach(0..<5) { Event in // Replace with your data model here
                                     VStack(alignment: .leading) {
                                         Image("myImage")
                                             .renderingMode(.original)
@@ -93,7 +93,7 @@ struct MixView: View {
                             }
                             .padding(.horizontal)
                         }
-                        .frame()
+                        .frame(width: 50)
                         .clipped()
                     }
                     .padding(.horizontal)
@@ -166,14 +166,14 @@ struct MixView: View {
                         }
                     }
                     .padding(.horizontal)
-                    .frame()
+                    .frame(width: 50)
                     .clipped()
                 }
                 .frame(maxWidth: .infinity)
                 .clipped()
                 .padding(.top, 98)
                 .padding(.bottom, 150)
-                ForEach(0..<5) { _ // Replace with your data model here
+                ForEach(0..<5) { Event in // Replace with your data model here
                     
                 }
             }
@@ -247,7 +247,7 @@ struct MixView: View {
             VStack(spacing: 0) {
                 Divider()
                 HStack(spacing: 10) {
-                    ForEach(0..<5) { _ // Replace with your data model here
+                    ForEach(0..<5) {  Event in // Replace with your data model here
                         VStack(spacing: 4) {
                             Image(systemName: "play.circle.fill")
                                 .imageScale(.large)

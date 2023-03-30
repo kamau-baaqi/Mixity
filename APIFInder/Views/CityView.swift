@@ -77,7 +77,7 @@ struct CityView: View {
                         .clipped()
                         .padding(.horizontal)
                         .font(.system(size: 18, weight: .regular, design: .default))
-                    ForEach(0..<5) { _ // Replace with your data model here
+                    ForEach(0..<5) {  Event in // Replace with your data model here
                         VStack {
                             HStack(spacing: 16) {
                                 Image("myImage")
@@ -173,7 +173,7 @@ struct CityView: View {
             .mask { RoundedRectangle(cornerRadius: 0, style: .continuous) }
             .background {
                 LinearGradient(gradient: Gradient(colors: [.orange, .pink]), startPoint: .trailing, endPoint: .leading)
-                    .frame()
+                    .frame(width: 50)
                     .clipped()
             }
         }

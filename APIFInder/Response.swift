@@ -20,7 +20,7 @@ struct Venue: Codable {
     var display_location: String
 }
 
-struct Event: Codable {
+struct Event: Codable, Identifiable{
     var type: String
     var id: Int
     var venue : Venue
